@@ -17,7 +17,8 @@ int main(){
         std::string vowel{"aeiou"};
         std::string a{"Trust me I am an engineer"};
         while (a.find_first_of(vowel) != std::string::npos){
-            std::cout << a[a.find_first_of(vowel)]  ;
+            std::cout << a[a.find_first_of(vowel)] ;
+            a[a.find_first_of(vowel)] = '*' ;
         }
         std::cout << "\n";
 
