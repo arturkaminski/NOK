@@ -2,48 +2,52 @@
 #include <cstring>
 #include <algorithm>
 #include<vector>
+#include<bits/stdc++.h>
 std::vector<std::string> morse  = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.", ".-.-.-", "--..--", "..--..", ".----.", "-.-.--", "-..-.", "-.--.", "-.--.-", ".-...", "---...", "-.-.-.", "-...-", ".-.-.", "-....-", "..--.-", ".-..-.", "...-..-", ".--.-.", "...---..."};  
 std::vector<std::string> ascii  = {"A",  "B",    "C",    "D",   "E", "F",    "G",   "H",    "I",  "J",    "K",   "L",    "M",  "N",  "O",   "P",    "Q",    "R",   "S",   "T", "U",   "V",    "W",   "X",    "Y",    "Z",    "0",     "1",     "2",     "3",     "4",     "5",     "6",     "7",     "8",     "9",     ".",      ",",      "?",      "'",      "!",      "/",     "(",     ")",      "&",     ":",      ";",      "=",     "+",     "-",      "_",      "\"",     "$",       "@",      "SOS"};
+std::string word(std::string morseCode){
+    size_t pos =0;
+    std::string word;
+    std::string space = "    ";
+    while((pos = morseCode.find(space)) != std::string::npos){
+        word = morseCode.substr(0, pos);
+        std::cout << word << std::endl;
+        morseCode.erase(0, pos + space.length());
+    }
+    std::cout << morseCode << std::endl;
+    return word;
+}
 
 std::string decodeMorse(std::string morseCode){
     std::string temp;
     std::string decoded;
     std::vector<std::string>::iterator n = morse.begin();
-    std::cout << "first n: " << &n << "\n";
     for( auto p : morseCode){
-        //std::cout << p;
         if (p== ' '){
-            try{ 
-                n = std::find(morse.begin(), morse.end(), temp);
-                if (n == morse.end()){
-                    throw temp;
-                }
-                else{
-                    int pos = std::distance(morse.begin(), n);
-                    decoded.append(ascii[pos]);
-                    temp.erase(temp.begin(), temp.end());
-                }
+            n = std::find(morse.begin(), morse.end(), temp);
+            if (n == morse.end()){
+                temp.erase(temp.begin(), temp.end());
             }
-            catch(std::string t){
-                t.erase(temp.begin(), t.end());
-                std::cout << "wrong string\n";
+            else{
+                int pos = std::distance(morse.begin(), n);
+                decoded.append(ascii[pos]);
+                temp.erase(temp.begin(), temp.end());
             }
+            
         }
         else{
             temp.push_back(p);
         }
     }
-    int pos = std::distance(morse.begin(), n);
-    decoded.append(ascii[pos]);
-    temp.erase(temp.begin(), temp.end());
     std::cout << "\n";
     return decoded;
 }
 int main(){
-    std::string OSO = {" --- ... ---   .- .-."};
-    std::string OSX = {" .- .-. - ..- .-.    .-."};
+    std::string OSO = {" --- ... ---   .- .-. "};
+    std::string OSX = {" .- .-. - ..- .-.    .-. "};
 
     std::cout << "decoded \n";
-    std::cout << decodeMorse(OSO) << '\n';
+   // std::cout << decodeMorse(OSO) << '\n';
     std::cout << decodeMorse(OSX) << '\n';
+    word(OSO);
 }
