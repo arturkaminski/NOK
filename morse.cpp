@@ -8,13 +8,10 @@ std::vector<std::string> ascii  = {"A",  "B",    "C",    "D",   "E", "F",    "G"
 std::string word(std::string morseCode){
     size_t pos =0;
     std::string word;
-    std::string space = "    ";
-    while((pos = morseCode.find(space)) != std::string::npos){
-        word = morseCode.substr(0, pos);
-        std::cout << word << std::endl;
-        morseCode.erase(0, pos + space.length());
-    }
-    std::cout << morseCode << std::endl;
+    std::string space = "   ";
+    std::string token = morseCode.substr(0, morseCode.find(space));
+    std::cout << token << '\n';
+    morseCode.erase(0, morseCode.find(space) + space.length());
     return word;
 }
 
@@ -44,10 +41,10 @@ std::string decodeMorse(std::string morseCode){
 }
 int main(){
     std::string OSO = {" --- ... ---   .- .-. "};
-    std::string OSX = {" .- .-. - ..- .-.    .-. "};
+    std::string OSX = {" .- .-. - ..- .-.   .-. "};
 
-    std::cout << "decoded \n";
+   // std::cout << "decoded \n";
    // std::cout << decodeMorse(OSO) << '\n';
-    std::cout << decodeMorse(OSX) << '\n';
+   // std::cout << decodeMorse(OSX) << '\n';
     word(OSO);
 }
