@@ -43,8 +43,10 @@ int main(){
     std::string OSO = {" --- ... ---   .- .-. "};
     std::string OSX = {" .- .-. - ..- .-.   .-. "};
 
+
    // std::cout << "decoded \n";
    // std::cout << decodeMorse(OSO) << '\n';
    // std::cout << decodeMorse(OSX) << '\n';
     word(OSO);
+
 }
