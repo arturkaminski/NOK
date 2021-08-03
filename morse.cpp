@@ -60,3 +60,4 @@ std::string word(std::string morseCode){
     returnSentence.append(decodeMorse(morseCode));                  // adding last decoded word to returned string
     return returnSentence;
 }
+
