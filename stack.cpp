@@ -17,7 +17,8 @@ void Stack::push(int value){
 }
 
 int Stack::pop(){
-    return stackstore[--SP];
+    int result =  stackstore[--SP];
+    return result;
 }
 
 class AddingStack : Stack{
